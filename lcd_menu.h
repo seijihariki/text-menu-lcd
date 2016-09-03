@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 struct LCD
 {
 public:
@@ -18,7 +20,7 @@ public:
     screen(screen* par);
 
     virtual void handle_input(char input) = 0;
-    virtual void draw() = 0;
+    virtual void draw(LCD *lcd) = 0;
     virtual void goback() = 0;
 
 protected:
@@ -31,10 +33,11 @@ public:
     choice(int mitem, int lines, screen* par);
 
     void handle_input(char input);
-    void draw();
+    void draw(LCD *lcd);
 
     void add_item(screen *sc, String label);
     void rem_item(int pos);
+    void goback();
 private:
     bool state;
     int inside, sy;
@@ -43,3 +46,4 @@ private:
     screen **screens;
     String *labels;
 };
+

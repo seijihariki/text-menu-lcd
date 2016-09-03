@@ -1,4 +1,4 @@
-#include "lcd-menu.h"
+#include "lcd_menu.h"
 
 LCD::LCD (int sx, int sy) : w(sx), h(sy)
 {
@@ -36,7 +36,7 @@ void choice::handle_input (char input)
         break;
     case 2:
         {
-            if(select != maxit)
+            if(select != maxit - 1)
             {
                 if(select == vtop + sy - 1)
                 {
@@ -61,13 +61,16 @@ void choice::handle_input (char input)
 
 void choice::draw (LCD *lcd)
 {
-    if(inside >= 0) {screens[select]->draw(); return;}
+    if(inside >= 0) {screens[select]->draw(lcd); return;}
 
     for(int i = vtop, j = 0; i < vtop + sy; j++, i++)
+    {
         lcd->write(labels[i], j);
-
-    lcd->move(lcd->w - 1, select - vtop);
-    lcd->write("X");
+        for(int k = labels[i].length(); k < lcd->w; k++) lcd->write(" ");
+        
+        lcd->move(lcd->w - 1, select - vtop);
+        lcd->write("X");
+    }
 }
 
 void choice::add_item (screen *sc, String label)
@@ -84,4 +87,8 @@ void choice::rem_item (int pos)
     labels[pos] = labels[itemcnt];
 }
 
+void choice::goback ()
+{
+    inside = -1;
+}
 
