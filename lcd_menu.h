@@ -8,6 +8,8 @@ public:
     
     virtual void move(int x, int y) = 0;
     virtual void clear() = 0;
+    
+    int w, h;
 };
 
 struct screen

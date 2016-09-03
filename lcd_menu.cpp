@@ -1,5 +1,9 @@
 #include "lcd-menu.h"
 
+LCD::LCD (int sx, int sy) : w(sx), h(sy)
+{
+}
+
 screen::screen (screen* par) : parent(par)
 {
 }
@@ -62,7 +66,7 @@ void choice::draw (LCD *lcd)
     for(int i = vtop, j = 0; i < vtop + sy; j++, i++)
         lcd->write(labels[i], j);
 
-    lcd->move(lcd->w() - 1, select - vtop);
+    lcd->move(lcd->w - 1, select - vtop);
     lcd->write("X");
 }
 
