@@ -6,7 +6,8 @@ public:
     virtual void write(String str, int row) = 0;
     virtual void write(String str, int column, int row) = 0;
     
-    void move(int x, int y);
+    virtual void move(int x, int y) = 0;
+    virtual void clear() = 0;
 };
 
 struct screen
