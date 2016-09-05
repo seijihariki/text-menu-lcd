@@ -8,7 +8,8 @@ namespace lcdmenu
     {
     public:
         hex_input(String _label, int maxdigit, screen* sc, LCD* _lcd, screen* par);
-        ~hex_input();
+
+        int getValue();
     
         void handle_input(char input);
         void draw();

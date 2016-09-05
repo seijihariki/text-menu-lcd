@@ -6,6 +6,11 @@ lcdmenu::hex_input::hex_input (String _label, int maxdigit, screen* sc, LCD* _lc
     if(md != 1) number += " "; 
 }
 
+int lcdmenu::hex_input::getValue ()
+{
+    return strtoul(&number[0], NULL, 16);
+}
+
 void lcdmenu::hex_input::handle_input (char input)
 {
     if(inside) {after->handle_input(input); return;}
